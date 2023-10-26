@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using BusinessObjects.Models;
 using Repository.IRepository;
 using Repository;
+using Repository.Implements;
 
 namespace LaundryMidlePlatform.Pages.Orders
 {

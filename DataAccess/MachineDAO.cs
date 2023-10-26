@@ -1,5 +1,5 @@
 ﻿using BusinessObjects.Models;
-using Repository;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,48 +9,100 @@ using System.Threading.Tasks;
 
 namespace DataAccess
 {
-    internal class MachineDAO : MachineRepository
+    public class MachineDAO
     {
-        private LaundryMiddlePlatformContext _context;
-        public MachineDAO()
+        private static MachineDAO instance = null;
+        private static readonly object instanceLock = new object();
+        public static MachineDAO Instance
         {
-            _context = new LaundryMiddlePlatformContext();
-        }
-        public void AddWashingMachine(WashingMachine washingMachine)
-        {
-            _context.Add(washingMachine);
-            _context.SaveChanges();
+            get
+            {
+                lock (instanceLock)
+                {
+                    if (instance == null)
+                    {
+                        instance = new MachineDAO();
+                    }
+                    return instance;
+                }
+            }
         }
 
-        public void DeleteWashingMachine(WashingMachine washingMachine)
+        public IList<WashingMachine> GetWashingMachines()
         {
-            throw new NotImplementedException();
+            var Dbcontext = new LaundryMiddlePlatformContext();
+            return Dbcontext.WashingMachines.ToList();
         }
-
+        public bool AddWashingMachine(WashingMachine washingMachine)
+        {
+            bool check = false;
+            try
+            {
+                var Dbcontext = new LaundryMiddlePlatformContext();
+                Dbcontext.WashingMachines.Add(washingMachine);
+                check = true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return check;
+        }
+        public bool UpdateWashingMachine(WashingMachine washingMachine, int washingMachineId)
+        {
+            WashingMachine oldWashingMachine = null;
+            bool check = false;
+            try
+            {
+                oldWashingMachine = GetWashingMachineById(washingMachineId);
+                if (oldWashingMachine != null)
+                {
+                    var Dbcontext = new LaundryMiddlePlatformContext();
+                    Dbcontext.Entry<WashingMachine>(oldWashingMachine).State = EntityState.Modified;
+                    Dbcontext.SaveChanges();
+                    check = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                check = false;
+                throw new Exception(ex.Message);
+            }
+            return check;
+        }
+        public bool DeleteWashingMachine(int washingMachineId)
+        {
+            bool check = false;
+            try
+            {
+                WashingMachine washingMachine = GetWashingMachineById(washingMachineId);
+                if (washingMachine != null)
+                {
+                    var Dbcontext = new LaundryMiddlePlatformContext();
+                    Dbcontext.WashingMachines.Remove(washingMachine);
+                    Dbcontext.SaveChanges();
+                    check = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return check;
+        }
         public WashingMachine GetWashingMachineById(int washingMachineId)
         {
-            return _context.WashingMachines.FirstOrDefault(x => x.MachineId == washingMachineId);
-        }
-
-        public List<WashingMachine> GetWashingMachines()
-        {
-           return _context.WashingMachines.ToList();    
-        }
-
-        public void UpdateWashingMachine(WashingMachine washingMachine)
-        {
-            var oldWashingMachine = _context.WashingMachines.FirstOrDefault(x => x.MachineId == washingMachine.MachineId);
-            if (oldWashingMachine != null)
+            WashingMachine washingMachine = null;
+            try
             {
-
-                oldWashingMachine.MachineName = washingMachine.MachineName;
-                oldWashingMachine.Performmance = washingMachine.Performmance;
-                oldWashingMachine.Status = washingMachine.Status;
-                oldWashingMachine.StoreId = washingMachine.StoreId;
-
-                _context.Update(oldWashingMachine);
-                _context.SaveChanges();
+                var Dbcontext = new LaundryMiddlePlatformContext();
+                washingMachine = Dbcontext.WashingMachines.FirstOrDefault(o => o.MachineId == washingMachineId);
             }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return washingMachine;
         }
     }
 }

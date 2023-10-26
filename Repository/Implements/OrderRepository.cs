@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Repository
+namespace Repository.Implements
 {
     public class OrderRepository : IOrderRepository
     {
-        public IList<Order> findAllOrders() => OrderDAO.Instance.findAllOrders(); 
+        public IList<Order> findAllOrders() => OrderDAO.Instance.findAllOrders();
 
-        public Order findOrderById(int orderId) => OrderDAO.Instance.findOrderById(orderId); 
+        public Order findOrderById(int orderId) => OrderDAO.Instance.findOrderById(orderId);
 
         public bool updateOrder(Order order, int orderId) => OrderDAO.Instance.updateOrder(order, orderId);
         public bool createOrder(Order order) => OrderDAO.Instance.createOrder(order);
