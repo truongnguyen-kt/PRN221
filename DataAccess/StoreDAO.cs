@@ -1,5 +1,5 @@
 ﻿using BusinessObjects.Models;
-using Repository;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,49 +8,102 @@ using System.Threading.Tasks;
 
 namespace DataAccess
 {
-    internal class StoreDAO : StoreRepository
+    public class StoreDAO 
     {
-        private LaundryMiddlePlatformContext _context;
-        public StoreDAO()
+        private static StoreDAO instance = null;
+        private static readonly object instanceLock = new object();
+        public static StoreDAO Instance
         {
-            _context = new LaundryMiddlePlatformContext();
-        }
-        public void AddStore(Store store)
-        {
-            _context.Add(store);
-            _context.SaveChanges();
+            get
+            {
+                lock (instanceLock)
+                {
+                    if (instance == null)
+                    {
+                        instance = new StoreDAO();
+                    }
+                    return instance;
+                }
+            }
         }
 
-        public void DeleteStore(Store store)
+        public IList<Store> GetAllStores()
         {
-            throw new NotImplementedException();
+            var Dbcontext = new LaundryMiddlePlatformContext();
+            return Dbcontext.Stores.ToList();
         }
-
         public Store GetStoreById(int id)
         {
-            return _context.Stores.FirstOrDefault(x => x.StoreId == id);
-        }
-
-        public List<Store> GetStores()
-        {
-            return _context.Stores.ToList();
-        }
-
-        public void UpdateStore(Store store)
-        {
-            var oldStore = _context.Stores.FirstOrDefault(x => x.StoreId == store.StoreId);
-            if (oldStore != null)
+            Store store = null;
+            try
             {
-
-                oldStore.StoreName = store.StoreName;
-                oldStore.Address = store.Address;
-                oldStore.Price = store.Price;
-                oldStore.Status = store.Status;
-                oldStore.Phone = store.Phone;
-
-                _context.Update(oldStore);
-                _context.SaveChanges();
+                var Dbcontext = new LaundryMiddlePlatformContext();
+                store = Dbcontext.Stores.FirstOrDefault(o => o.StoreId == id);
             }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return store;
+        }
+
+        public bool AddStore(Store store)
+        {
+            bool check = false;
+            try
+            {
+                var Dbcontext = new LaundryMiddlePlatformContext();
+                Dbcontext.Stores.Add(store);
+                check = true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return check;
+        }
+
+        public bool DeleteStore(int storeId)
+        {
+            bool check = false;
+            try
+            {
+                Store store = GetStoreById(storeId);
+                if (store != null)
+                {
+                    var Dbcontext = new LaundryMiddlePlatformContext();
+                    Dbcontext.Stores.Remove(store);
+                    Dbcontext.SaveChanges();
+                    check = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return check;
+        }
+        public bool UpdateStore(Store store, int storeId)
+        {
+            Store oldStore = null;
+            bool check = false;
+            try
+            {
+                oldStore = GetStoreById(storeId);
+                if (oldStore != null)
+                {
+                    var Dbcontext = new LaundryMiddlePlatformContext();
+                    Dbcontext.Entry<Store>(store).State = EntityState.Modified;
+                    Dbcontext.SaveChanges();
+                    check = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                check = false;
+                throw new Exception(ex.Message);
+            }
+            return check;
         }
     }
 }
