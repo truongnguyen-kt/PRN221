@@ -8,4 +8,8 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Repository
+<<<<<<< HEAD
 build_property.ProjectDir = C:\Users\Blues\source\repos\GIT\Repository\
+=======
+build_property.ProjectDir = C:\Users\ASUS\source\repos\PhuNT_PRN221\Repository\
+>>>>>>> dd5ac565c8e9b160a37530a0d7e4bd624f55d520

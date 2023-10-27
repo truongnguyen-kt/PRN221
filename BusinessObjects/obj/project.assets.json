@@ -10931,12 +10931,17 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\Blues\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+=======
+    "C:\\Users\\ASUS\\.nuget\\packages\\": {}
+>>>>>>> dd5ac565c8e9b160a37530a0d7e4bd624f55d520
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\Blues\\source\\repos\\GIT\\BusinessObjects\\BusinessObjects.csproj",
       "projectName": "BusinessObjects",
       "projectPath": "C:\\Users\\Blues\\source\\repos\\GIT\\BusinessObjects\\BusinessObjects.csproj",
@@ -10949,6 +10954,16 @@
       "configFilePaths": [
         "C:\\Users\\Blues\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+=======
+      "projectUniqueName": "C:\\Users\\ASUS\\Source\\Repos\\PhuNT_PRN221\\BusinessObjects\\BusinessObjects.csproj",
+      "projectName": "BusinessObjects",
+      "projectPath": "C:\\Users\\ASUS\\Source\\Repos\\PhuNT_PRN221\\BusinessObjects\\BusinessObjects.csproj",
+      "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ASUS\\Source\\Repos\\PhuNT_PRN221\\BusinessObjects\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> dd5ac565c8e9b160a37530a0d7e4bd624f55d520
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -11021,7 +11036,11 @@
             "privateAssets": "all"
           }
         },
+<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+=======
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+>>>>>>> dd5ac565c8e9b160a37530a0d7e4bd624f55d520
       }
     }
   }
