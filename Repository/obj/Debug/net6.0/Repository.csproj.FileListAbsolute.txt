@@ -1,0 +1,17 @@
+C:\Users\Blues\source\repos\GIT\Repository\bin\Debug\net6.0\Repository.deps.json
+C:\Users\Blues\source\repos\GIT\Repository\bin\Debug\net6.0\Repository.dll
+C:\Users\Blues\source\repos\GIT\Repository\bin\Debug\net6.0\Repository.pdb
+C:\Users\Blues\source\repos\GIT\Repository\bin\Debug\net6.0\BusinessObjects.dll
+C:\Users\Blues\source\repos\GIT\Repository\bin\Debug\net6.0\DataAccess.dll
+C:\Users\Blues\source\repos\GIT\Repository\bin\Debug\net6.0\DataAccess.pdb
+C:\Users\Blues\source\repos\GIT\Repository\bin\Debug\net6.0\BusinessObjects.pdb
+C:\Users\Blues\source\repos\GIT\Repository\obj\Debug\net6.0\Repository.csproj.AssemblyReference.cache
+C:\Users\Blues\source\repos\GIT\Repository\obj\Debug\net6.0\Repository.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Blues\source\repos\GIT\Repository\obj\Debug\net6.0\Repository.AssemblyInfoInputs.cache
+C:\Users\Blues\source\repos\GIT\Repository\obj\Debug\net6.0\Repository.AssemblyInfo.cs
+C:\Users\Blues\source\repos\GIT\Repository\obj\Debug\net6.0\Repository.csproj.CoreCompileInputs.cache
+C:\Users\Blues\source\repos\GIT\Repository\obj\Debug\net6.0\Repository.csproj.CopyComplete
+C:\Users\Blues\source\repos\GIT\Repository\obj\Debug\net6.0\Repository.dll
+C:\Users\Blues\source\repos\GIT\Repository\obj\Debug\net6.0\refint\Repository.dll
+C:\Users\Blues\source\repos\GIT\Repository\obj\Debug\net6.0\Repository.pdb
+C:\Users\Blues\source\repos\GIT\Repository\obj\Debug\net6.0\ref\Repository.dll
